@@ -22,6 +22,7 @@ class ArticleDB:
                 """
         }
     ]
+    last_id = 3
 
     def get_all(self):
         return self.storage
@@ -30,3 +31,13 @@ class ArticleDB:
         for article in self.storage:
             if article['id'] == id_:
                 return article
+
+    def create(self, title, text):
+        self.last_id += 1
+        new_article = {
+            "id": self.last_id,
+            "title": title,
+            "text": text
+        }
+        self.storage.append(new_article)
+        return new_article
