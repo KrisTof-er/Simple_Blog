@@ -30,6 +30,23 @@ def create_article():
 
     title = request.form.get("title")
     text = request.form.get("text")
-
     new_article = db.create(title, text)
     return redirect(location=url_for("blog.get_article", id_=new_article["id"]))
+
+
+@blog_router.route('/update_article/<int:id_>', methods=["GET", "POST"])
+def update_article(id_):
+    if request.method == "GET":
+        article = db.get_one(id_)
+        return render_template('article_form.html', article=article)
+
+    title = request.form.get("title")
+    text = request.form.get("text")
+    updated_article = db.update(id_, title, text)
+    return redirect(location=url_for("blog.get_article", id_=updated_article["id"]))
+
+
+@blog_router.route('/delete_article/<int:id_>')
+def delete_article(id_):
+    article = db.get_one(id_=id_)
+    return render_template('article.html', article=article)

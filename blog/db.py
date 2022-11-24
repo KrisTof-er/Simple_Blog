@@ -4,22 +4,22 @@ class ArticleDB:
             "id": 1,
             "title": "title1",
             "text": """
-                textTEXTtext textTEXTtext,textTEXTtext. textTEXTtext-textTEXTtext
-                """
+textTEXTtext textTEXTtext,textTEXTtext. textTEXTtext-textTEXTtext
+"""
         },
         {
             "id": 2,
             "title": "title2",
             "text": """
-                textTEXTtext textTEXTtext,textTEXTtext. textTEXTtext-textTEXTtext
-                """
+textTEXTtext textTEXTtext,textTEXTtext. textTEXTtext-textTEXTtext
+"""
         },
         {
             "id": 3,
             "title": "title3",
             "text": """
-                textTEXTtext textTEXTtext,textTEXTtext. textTEXTtext-textTEXTtext
-                """
+textTEXTtext textTEXTtext,textTEXTtext. textTEXTtext-textTEXTtext
+"""
         }
     ]
     last_id = 3
@@ -41,3 +41,14 @@ class ArticleDB:
         }
         self.storage.append(new_article)
         return new_article
+
+    def update(self, id_, title, text):
+        updated_article = {
+            "id": id_,
+            "title": title,
+            "text": text
+        }
+        for article_number in range(len(self.storage)):
+            if self.storage[article_number].get("id") == id_:
+                self.storage[article_number] = updated_article
+        return updated_article

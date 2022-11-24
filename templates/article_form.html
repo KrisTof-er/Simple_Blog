@@ -8,13 +8,28 @@
     <form method="post">
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
-            <input type="text" class="form-control" id="title" name="title">
+            {% if article %}
+                <input type="text" class="form-control" id="title" name="title"
+                {% if article %}
+                    value="{{ article.title }}"
+                {% endif %}>
+            {% else %}
+                <input type="text" class="form-control" id="title" name="title">
+            {% endif %}
         </div>
         <div class="mb-3">
             <label for="text" class="form-label">Text</label>
-            <textarea class="form-control" id="article-text" rows="3" name="text"></textarea>
+            <textarea class="form-control" id="article-text" rows="3" name="text">
+{% if article %}{{ article.text }}{% endif %}</textarea>
         </div>
-        <button type="submit" class="btn btn-success">Create</button>
-        <button type="reset" class="btn btn-outline-secondary">Clear</button>
+        <button type="submit" class="btn btn-success">
+            {% if article %}
+                Update
+            {% else %}
+                Create
+            {% endif %}
+        </button>
+        <button type="reset" class="btn btn-light">Clear</button>
+        <a href="/articles" class="btn btn-secondary">Cancel</a>
     </form>
 {% endblock %}
