@@ -52,3 +52,6 @@ textTEXTtext textTEXTtext,textTEXTtext. textTEXTtext-textTEXTtext
             if self.storage[article_number].get("id") == id_:
                 self.storage[article_number] = updated_article
         return updated_article
+
+    def delete(self, id_):
+        self.storage = [article for article in self.storage if article["id"] != id_]

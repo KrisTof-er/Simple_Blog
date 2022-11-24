@@ -10,9 +10,9 @@
             <label for="title" class="form-label">Title</label>
             {% if article %}
                 <input type="text" class="form-control" id="title" name="title"
-                {% if article %}
-                    value="{{ article.title }}"
-                {% endif %}>
+                        {% if article %}
+                       value="{{ article.title }}"
+                        {% endif %}>
             {% else %}
                 <input type="text" class="form-control" id="title" name="title">
             {% endif %}
@@ -30,6 +30,12 @@
             {% endif %}
         </button>
         <button type="reset" class="btn btn-light">Clear</button>
-        <a href="/articles" class="btn btn-secondary">Cancel</a>
+        <a class="btn btn-secondary"
+        {% if article %}
+            href="{{ url_for("blog.get_article", id_=article.id) }}"
+        {% else %}
+            href="{{ url_for("blog.get_articles") }}"
+        {% endif %}
+        >Cancel</a>
     </form>
 {% endblock %}

@@ -48,5 +48,5 @@ def update_article(id_):
 
 @blog_router.route('/delete_article/<int:id_>')
 def delete_article(id_):
-    article = db.get_one(id_=id_)
-    return render_template('article.html', article=article)
+    db.delete(id_)
+    return redirect(location=url_for("blog.get_articles"))
